@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - ut.info - w5/fms.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">w5</a> - fms.cpp<span style="font-size: 80%;"> (source / <a href="fms.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">ut.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">43</td>
+            <td class="headerCovTableEntry">43</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2023-03-21 17:19:26</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">40</td>
+            <td class="headerCovTableEntry">40</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : #include &lt;stdio.h&gt; // fms.cpp</a>
+<span class="lineNum">       2 </span>                :            : #include &lt;stdlib.h&gt;
+<span class="lineNum">       3 </span>                :            : #include &lt;ctype.h&gt;
+<span class="lineNum">       4 </span>                :            : #include &lt;string.h&gt;
+<span class="lineNum">       5 </span>                :            : typedef enum
+<span class="lineNum">       6 </span>                :            : {
+<span class="lineNum">       7 </span>                :            :     start,
+<span class="lineNum">       8 </span>                :            :     build_id,
+<span class="lineNum">       9 </span>                :            :     build_num,
+<span class="lineNum">      10 </span>                :            :     build_invalid,
+<span class="lineNum">      11 </span>                :            :     identifier,
+<span class="lineNum">      12 </span>                :            :     number,
+<span class="lineNum">      13 </span>                :            :     invalid,
+<a name="14"><span class="lineNum">      14 </span>                :            :     stop</a>
+<span class="lineNum">      15 </span>                :            : } state_t;
+<span class="lineNum">      16 </span>                :<span class="lineCov">         41 : state_t getNextState(state_t current_state, char ch)</span>
+<span class="lineNum">      17 </span>                :            : {
+<span class="lineNum">      18 </span>        [<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchCov" title="Branch 1 was taken 27 times"> + </span>]:<span class="lineCov">         41 :     if (current_state == start)</span>
+<span class="lineNum">      19 </span>                :            :     {
+<span class="lineNum">      20 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 13 times"> + </span>]:<span class="lineCov">         14 :         if (ch == ' ')</span>
+<span class="lineNum">      21 </span>                :<span class="lineCov">          1 :             return start;</span>
+<span class="lineNum">      22 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>]:<span class="lineCov">         13 :         else if (isalpha(ch))</span>
+<span class="lineNum">      23 </span>                :<span class="lineCov">          4 :             return build_id;</span>
+<span class="lineNum">      24 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 5 times"> + </span><span class="branchCov" title="Branch 3 was taken 4 times"> + </span>]:<span class="lineCov">          9 :         else if (isdigit(ch))</span>
+<span class="lineNum">      25 </span>                :<span class="lineCov">          5 :             return build_num;</span>
+<span class="lineNum">      26 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :         else if (ch == '#')</span>
+<span class="lineNum">      27 </span>                :<span class="lineCov">          1 :             return stop;</span>
+<span class="lineNum">      28 </span>                :            :     }
+<span class="lineNum">      29 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 14 times"> + </span>]:<span class="lineCov">         30 :     if (current_state == build_id)</span>
+<span class="lineNum">      30 </span>                :            :     {
+<span class="lineNum">      31 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">         16 :         if (isalpha(ch) || isdigit(ch) || (ch == '_')){</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchCov" title="Branch 5 was taken 5 times"> + </span>]
+<span class="lineNum">      32 </span>                :            :             // printf(&quot;jdi\n%d %d %d\n&quot;,isalpha(ch),isdigit(ch),(ch == '_'));
+<span class="lineNum">      33 </span>                :<span class="lineCov">         11 :             return build_id;</span>
+<span class="lineNum">      34 </span>                :            :         }
+<span class="lineNum">      35 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          5 :         else if (ch == ' ')</span>
+<span class="lineNum">      36 </span>                :<span class="lineCov">          3 :             return identifier;</span>
+<span class="lineNum">      37 </span>                :            :     }
+<span class="lineNum">      38 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 5 times"> + </span>]:<span class="lineCov">         16 :     if (current_state == build_num)</span>
+<span class="lineNum">      39 </span>                :            :     {
+<span class="lineNum">      40 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 5 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchCov" title="Branch 3 was taken 5 times"> + </span>]:<span class="lineCov">         11 :         if (isdigit(ch))</span>
+<span class="lineNum">      41 </span>                :<span class="lineCov">          6 :             return build_num;</span>
+<span class="lineNum">      42 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          5 :         else if (ch == ' ')</span>
+<span class="lineNum">      43 </span>                :<span class="lineCov">          4 :             return number;</span>
+<span class="lineNum">      44 </span>                :            :     }
+<span class="lineNum">      45 </span>                :            :     else
+<a name="46"><span class="lineNum">      46 </span>                :<span class="lineCov">          5 :         return stop;</span></a>
+<span class="lineNum">      47 </span>                :<span class="lineCov">          1 :     }</span>
+<span class="lineNum">      48 </span>                :<span class="lineCov">          6 : char *FMS(char *s)</span>
+<span class="lineNum">      49 </span>                :            : { // fms.cpp
+<span class="lineNum">      50 </span>                :            :     char out[80];
+<span class="lineNum">      51 </span>                :<span class="lineCov">          6 :     char *output = (char *)malloc(sizeof(char) * 500);</span>
+<span class="lineNum">      52 </span>                :            :     char input_char;
+<span class="lineNum">      53 </span>                :<span class="lineCov">          6 :     int index = 0;</span>
+<span class="lineNum">      54 </span>                :            :     state_t current_state;
+<span class="lineNum">      55 </span>                :<span class="lineCov">          6 :     current_state = start;</span>
+<span class="lineNum">      56 </span>                :<span class="lineCov">          6 :     strcpy(output, &quot;&quot;);</span>
+<span class="lineNum">      57 </span>                :<span class="lineCov">         35 :     do</span>
+<span class="lineNum">      58 </span>                :            :     {
+<span class="lineNum">      59 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 38 times"> + </span>]:<span class="lineCov">         41 :         if (current_state == identifier)</span>
+<span class="lineNum">      60 </span>                :            :         {
+<span class="lineNum">      61 </span>                :<span class="lineCov">          3 :             current_state = start;</span>
+<span class="lineNum">      62 </span>                :<span class="lineCov">          3 :             sprintf(out, &quot; - identifier\n&quot;);</span>
+<span class="lineNum">      63 </span>                :<span class="lineCov">          3 :             strcat(output, out);</span>
+<span class="lineNum">      64 </span>                :            :         }
+<span class="lineNum">      65 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 34 times"> + </span>]:<span class="lineCov">         38 :         else if (current_state == number)</span>
+<span class="lineNum">      66 </span>                :            :         {
+<span class="lineNum">      67 </span>                :<span class="lineCov">          4 :             current_state = start;</span>
+<span class="lineNum">      68 </span>                :<span class="lineCov">          4 :             sprintf(out, &quot; - number\n&quot;);</span>
+<span class="lineNum">      69 </span>                :<span class="lineCov">          4 :             strcat(output, out);</span>
+<span class="lineNum">      70 </span>                :            :         }
+<span class="lineNum">      71 </span>                :            :         // scanf(&quot;%c&quot;, &amp;input_char);
+<span class="lineNum">      72 </span>                :<span class="lineCov">         41 :         input_char = s[index++];</span>
+<span class="lineNum">      73 </span>[<span class="branchCov" title="Branch 0 was taken 33 times"> + </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 32 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span>]:<span class="lineCov">         41 :         if ((input_char != ' ') &amp;&amp; (input_char != '#'))</span>
+<span class="lineNum">      74 </span>                :            :         {
+<span class="lineNum">      75 </span>                :<span class="lineCov">         32 :             sprintf(out, &quot;%c&quot;, input_char);</span>
+<span class="lineNum">      76 </span>                :<span class="lineCov">         32 :             strcat(output, out);</span>
+<span class="lineNum">      77 </span>                :            :         }
+<span class="lineNum">      78 </span>                :<span class="lineCov">         41 :         current_state = getNextState(current_state, input_char);</span>
+<span class="lineNum">      79 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">         41 :     } while (current_state != stop);</span>
+<span class="lineNum">      80 </span>                :<span class="lineCov">          6 :     return output;</span>
+<span class="lineNum">      81 </span>                :            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

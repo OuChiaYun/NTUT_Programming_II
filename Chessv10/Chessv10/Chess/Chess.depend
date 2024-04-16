@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1490105688 source:d:\chess\chess\x.c
+	"chess.h"
+
+1490105028 d:\chess\chess\chess.h
+	<graphics.h>
+	<stdlib.h>
+	<time.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+
+1266069014 c:\program files (x86)\codeblocks-ep\sdk\winbgim\include\graphics.h
+	<windows.h>
+	<limits.h>
+	<sstream>
+
+1490105078 source:d:\chess\chess\main.c
+	"chess.h"
+
+1490105688 source:d:\chess\chessv10\chess\x.c
+	"chess.h"
+
+1490153490 d:\chess\chessv10\chess\chess.h
+	<graphics.h>
+	<stdlib.h>
+	<time.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+
+1490105078 source:d:\chess\chessv10\chess\main.c
+	"chess.h"
+
